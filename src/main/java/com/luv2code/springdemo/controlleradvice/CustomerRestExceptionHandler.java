@@ -25,4 +25,18 @@ public class CustomerRestExceptionHandler {
 		return new ResponseEntity<CustomerErrorResponse>(error,HttpStatus.NOT_FOUND);
 	}
 	
+	//Will handle all exceptions which do not have defined handler
+	
+	@ExceptionHandler(Exception.class)
+	public ResponseEntity<CustomerErrorResponse> handleBadResquests(Exception exc){
+		
+		CustomerErrorResponse error = new CustomerErrorResponse(HttpStatus.BAD_REQUEST.value(),
+																"You have provided a bad request, please check your URL!",
+																System.currentTimeMillis());
+		
+		
+		return new ResponseEntity<CustomerErrorResponse>(error,HttpStatus.BAD_REQUEST);
+	}
+	
+	
 }
