@@ -56,9 +56,7 @@ public class CustomerDAOImpl implements CustomerDAO {
 		// now retrieve/read from database using the primary key
 		Customer theCustomer = currentSession.get(Customer.class, theId);
 		
-		if(theCustomer == null) {
-			throw new CustomerNotFoundException("Customer with id= " + theId + " was not found.");
-		}
+		
 		return theCustomer;
 	}
 
