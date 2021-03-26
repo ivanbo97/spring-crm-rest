@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.luv2code.springdemo.entity.Customer;
+import com.luv2code.springdemo.exception.CustomerNotFoundException;
 
 @Repository
 public class CustomerDAOImpl implements CustomerDAO {
@@ -40,7 +41,7 @@ public class CustomerDAOImpl implements CustomerDAO {
 
 		// get current hibernate session
 		Session currentSession = sessionFactory.getCurrentSession();
-		
+
 		// save/upate the customer ... finally LOL
 		currentSession.saveOrUpdate(theCustomer);
 		
@@ -54,6 +55,7 @@ public class CustomerDAOImpl implements CustomerDAO {
 		
 		// now retrieve/read from database using the primary key
 		Customer theCustomer = currentSession.get(Customer.class, theId);
+		
 		
 		return theCustomer;
 	}
